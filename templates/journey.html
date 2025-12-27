@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+    <h1>🔄 My Plastic Journey</h1>
+    <p>Track your plastic from bin to product</p>
+</div>
+
+<!-- Recent Deposits -->
+<div class="deposit-card" onclick="showJourney(1)">
+    <div class="deposit-header">
+        <h3>Dec 27, 2025 • 1.2kg</h3>
+        <span class="bin-id">Bin KTR001, Thrissur</span>
+    </div>
+    <div class="deposit-stats">
+        <span>+120 pts</span>
+        <span>✅ Complete</span>
+    </div>
+</div>
+
+<!-- Journey Timeline (Hidden initially) -->
+<div id="journey-detail" class="journey-timeline hidden">
+    <div class="timeline-step complete">
+        <div class="step-icon">🗑️</div>
+        <div class="step-content">
+            <h4>Deposited</h4>
+            <p>Dec 27, 6:51PM • Bin KTR001</p>
+        </div>
+    </div>
+    
+    <div class="timeline-step complete">
+        <div class="step-icon">🚚</div>
+        <div class="step-content">
+            <h4>Collected</h4>
+            <p>Dec 28, 8:15AM</p>
+        </div>
+    </div>
+    
+    <div class="timeline-step active">
+        <div class="step-icon">🏭</div>
+        <div class="step-content">
+            <h4>Processing</h4>
+            <p>Shredding & Melting</p>
+            <video autoplay loop muted class="process-video">
+                <source src="{{ url_for('static', filename='assets/shredding.mp4') }}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    
+    <div class="timeline-step complete">
+        <div class="step-icon">🔨</div>
+        <div class="step-content">
+            <h4>Manufactured</h4>
+            <p>Recycled Brick #KTR001-27</p>
+        </div>
+    </div>
+    
+    <div class="timeline-step complete">
+        <div class="step-icon">🧱</div>
+        <div class="step-content">
+            <h4>Product Live</h4>
+            <a href="/store" class="btn-primary">Redeem Now →</a>
+        </div>
+    </div>
+</div>
+
+<button class="deposit-btn" onclick="simulateDeposit()">🗑️ Deposit Now</button>
+{% endblock %}

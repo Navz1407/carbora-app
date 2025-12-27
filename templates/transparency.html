@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+    <h1>📽️ Transparency Hub</h1>
+    <p>Real factory footage - Watch your plastic transform</p>
+</div>
+
+<div class="transparency-container">
+    <!-- Live Stats Header -->
+    <div class="live-stats-header">
+        <div class="stat-card">
+            <div class="stat-number" data-target="2470">0</div>
+            <div class="stat-label">kg Processed Today</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" data-target="47">0</div>
+            <div class="stat-label">Active Bins</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" data-target="8247">0</div>
+            <div class="stat-label">kg CO₂ Saved</div>
+        </div>
+    </div>
+
+    <!-- Hero Video (Full Width) -->
+    <div class="video-hero-section">
+        <div class="video-hero-card">
+            <div class="video-hero-thumbnail" onclick="playVideo('journey')">
+                <div class="play-overlay">
+                    <div class="play-button">▶</div>
+                    <div class="video-duration">2:30</div>
+                </div>
+                <img src="https://www.youtube.com/watch?v=OWNA1CjIaIw" alt="Complete Journey">
+            </div>
+            <div class="video-info">
+                <h2>🎬 Watch how bricks are made!</h2>
+                <p>From plastic bottle deposit to finished recycled brick</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2 Premium Video Cards (Side by Side) -->
+    <div class="video-row">
+        <!-- Shredding Video -->
+        <div class="video-premium-card" onclick="playVideo('shredding')">
+            <div class="video-thumbnail">
+                <div class="play-overlay">
+                    <div class="play-button">▶</div>
+                    <div class="video-duration">0:45</div>
+                </div>
+                <img src="https://www.youtube.com/watch?v=uR57PlRoA6s" alt="Tiles">
+            </div>
+            <div class="video-title">
+                Plastic Tiles
+            </div>
+            <div class="video-subtitle">
+                Plastic bottles made into tiles!
+            </div>
+        </div>
+
+        <!-- Melting Video -->
+        <div class="video-premium-card" onclick="playVideo('melting')">
+            <div class="video-thumbnail">
+                <div class="play-overlay">
+                    <div class="play-button">▶</div>
+                    <div class="video-duration">0:30</div>
+                </div>
+                <img src="https://www.youtube.com/watch?v=QHcdFnz6fvY" alt="Educational video">
+            </div>
+            <div class="video-title">
+                How other products can be made
+            </div>
+            <div class="video-subtitle">
+                how plastic can be remodelled into new products
+            </div>
+        </div>
+    </div>
+
+    <!-- Third Video (Full Width Bottom) -->
+    <div class="video-final-section">
+        <div class="video-premium-card full-width" onclick="playVideo('molding')">
+            <div class="video-thumbnail">
+                <div class="play-overlay">
+                    <div class="play-button">▶</div>
+                    <div class="video-duration">1:15</div>
+                </div>
+                <img src="https://www.youtube.com/watch?v=_pHDHijEzOo" alt="Cause">
+            </div>
+            <div class="video-title">
+                The reason why we do this ❤️
+            </div>
+            <div class="video-subtitle">
+                Why we should be recycling plastic? -for a bigger cause
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.transparency-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Live Stats */
+.live-stats-header {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0 4rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    padding: 2rem 1.5rem;
+    border-radius: 25px;
+    text-align: center;
+    min-width: 180px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2E7D32;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Hero Video */
+.video-hero-section {
+    margin: 3rem 0;
+}
+
+.video-hero-card {
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.video-hero-card:hover {
+    transform: translateY(-10px);
+}
+
+.video-hero-thumbnail {
+    position: relative;
+    cursor: pointer;
+    height: 500px;
+}
+
+.video-hero-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Video Cards */
+.video-row {
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 0;
+    justify-content: center;
+}
+
+.video-premium-card {
+    width: 550px;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.video-premium-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+}
+
+.video-premium-card.full-width {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.video-thumbnail {
+    position: relative;
+    height: 310px;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2E7D32;
+    padding: 1.5rem 2rem 0.5rem;
+    margin: 0;
+}
+
+.video-subtitle {
+    color: #666;
+    padding: 0 2rem 2rem;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Play Overlay */
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(46,125,50,0.9), rgba(76,175,80,0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.video-hero-thumbnail:hover .play-overlay,
+.video-premium-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: #2E7D32;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    margin-right: -20px;
+    transition: all 0.3s ease;
+}
+
+.play-overlay:hover .play-button {
+    transform: scale(1.1);
+}
+
+.video-duration {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .video-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .video-hero-thumbnail,
+    .video-thumbnail {
+        height: 250px;
+    }
+    
+    .live-stats-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+</style>
+
+<script>
+function playVideo(type) {
+    const videos = {
+        'brick making process': 'OWNA1CjIaIw',
+        'how the tiles are made!': 'uR57PlRoA6s',
+        'check out how other products are made!': 'QHcdFnz6fvY',
+        'why we do this': '_pHDHijEzOo'      // Replace with REAL video IDs
+    };
+    
+    const videoId = videos[type] || videos['journey'];
+    
+    // ✅ CORRECT EMBED URL FORMAT
+    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    
+    // Option 1: Open in new tab (WORKS 100%)
+    window.open(embedUrl, '_blank');
+    
+    // Option 2: Modal popup (Premium - uncomment below)
+    /*
+    showVideoModal(embedUrl);
+    */
+}
+
+// Premium Modal (Uncomment if you want inline video)
+function showVideoModal(embedUrl) {
+    const modal = document.createElement('div');
+    modal.innerHTML = 
+        <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;display:flex;align-items:center;justify-content:center;">
+            <div style="position:relative;max-width:90%;max-height:90%;">
+                <iframe width="100%" height="500" src="${embedUrl}" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+                <button onclick="this.parentElement.parentElement.remove()" 
+                        style="position:absolute;top:10px;right:10px;background:#FF0000;color:white;border:none;border-radius:50%;width:50px;height:50px;font-size:20px;cursor:pointer;">×</button>
+            </div>
+        </div>
+    ;
+    document.body.appendChild(modal);
+}
+
+// Animate stats (keep existing)
+document.addEventListener('DOMContentLoaded', function() {
+    const numbers = document.querySelectorAll('[data-target]');
+    numbers.forEach(number => {
+        const target = parseInt(number.getAttribute('data-target'));
+        let current = 0;
+        const timer = setInterval(() => {
+            current += target / 100;
+            if (current >= target) {
+                number.textContent = target.toLocaleString();
+                clearInterval(timer);
+            } else {
+                number.textContent = Math.floor(current).toLocaleString();
+            }
+        }, 30);
+    });
+});
+</script>
+
+{% endblock %}

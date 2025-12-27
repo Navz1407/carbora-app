@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+    <h1>👤 Your Profile</h1>
+    <p>Username • Location info</p>
+</div>
+
+<div class="profile-container">
+    <!-- Profile Stats Card -->
+    <div class="profile-stats">
+        <div class="stat-large">
+            <div class="stat-number" data-target="{{ user.points|default(1247) }}">{{ user.points|default(1247) }}</div>
+            <div class="stat-label">Total Points</div>
+        </div>
+        <div class="stat-large">
+            <div class="stat-number" data-target="{{ user.total_plastic|default(5.2) }}">{{ user.total_plastic|default(5.2) }}</div>
+            <div class="stat-label">kg Recycled</div>
+        </div>
+        <div class="stat-large">
+            <div class="stat-number" data-target="15">{{ user.deposits|length|default(15) }}</div>
+            <div class="stat-label">Deposits</div>
+        </div>
+        <div class="stat-large">
+            <div class="stat-number" data-target="3.2">3.2</div>
+            <div class="stat-label">Products Redeemed</div>
+        </div>
+    </div>
+
+    <!-- Environmental Impact -->
+    <div class="impact-card">
+        <h3>🌍 Your Environmental Impact</h3>
+        <div class="impact-stats">
+            <div class="impact-item">
+                <div class="impact-number" data-target="8247">0</div>
+                <span>kg CO₂ Saved</span>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number" data-target="52">0</div>
+                <span>Trees Saved</span>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number" data-target="12470">0</div>
+                <span>Liters Water Saved</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Deposits -->
+    <div class="recent-deposits">
+        <h3>📋 Recent Deposits</h3>
+        <div class="deposits-list">
+            <div class="deposit-item">
+                <div class="deposit-info">
+                    <strong>1.2kg</strong> • Dec 27, 7:45PM
+                    <div>KTR001 • Thrissur Central</div>
+                </div>
+                <div class="deposit-points">+120 pts</div>
+            </div>
+            <div class="deposit-item">
+                <div class="deposit-info">
+                    <strong>0.8kg</strong> • Dec 26, 3:20PM
+                    <div>KTR002 • Near Guruvayur</div>
+                </div>
+                <div class="deposit-points">+80 pts</div>
+            </div>
+            <div class="deposit-item">
+                <div class="deposit-info">
+                    <strong>2.5kg</strong> • Dec 25, 11:15AM
+                    <div>KTR001 • Thrissur Central</div>
+                </div>
+                <div class="deposit-points">+250 pts</div>
+            </div>
+        </div>
+        <a href="/journey" class="view-all-btn">→ View All Deposits</a>
+    </div>
+
+    <!-- Wallet & Actions -->
+    <div class="wallet-actions">
+        <div class="wallet-card">
+            <h4>💎 Points Wallet</h4>
+            <div class="wallet-balance">{{ user.points|default(1247) }} points</div>
+            <small>10 pts per kg deposited</small>
+        </div>
+        <div class="action-buttons">
+            <a href="/store" class="btn-primary full-width">🛒 Redeem Products</a>
+            <button class="deposit-btn full-width" onclick="showDepositModal()">🗑️ Quick Deposit</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.profile-container {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-large {
+    background: white;
+    padding: 2.5rem 1.5rem;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #2E7D32;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.impact-card {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 25px;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.impact-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.impact-item {
+    text-align: center;
+}
+
+.impact-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.recent-deposits {
+    background: white;
+    border-radius: 25px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    margin: 3rem 0;
+}
+
+.deposits-list {
+    margin: 2rem 0;
+}
+
+.deposit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #EEE;
+}
+
+.deposit-item:last-child {
+    border-bottom: none;
+}
+
+.deposit-info strong {
+    color: #2E7D32;
+    font-size: 1.3rem;
+}
+
+.deposit-points {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 700;
+}
+
+.wallet-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.wallet-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+}
+
+.wallet-balance {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2E7D32;
+    margin: 1rem 0;
+}
+
+.full-width {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.view-all-btn {
+    display: inline-block;
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.view-all-btn:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .profile-stats, .wallet-actions {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// Animate stats on load
+document.addEventListener('DOMContentLoaded', function() {
+    const numbers = document.querySelectorAll('[data-target]');
+    numbers.forEach(number => {
+        const target = parseFloat(number.getAttribute('data-target'));
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                number.textContent = Math.round(target).toLocaleString();
+                clearInterval(timer);
+            } else {
+                number.textContent = Math.floor(current).toLocaleString();
+            }
+        }, 25);
+    });
+});
+</script>
+{% endblock %}

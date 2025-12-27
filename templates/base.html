@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="points-header">
+        <div>💎 <span id="points">{{ user.points if user else 1247 }}</span> Points</div>
+        <div>♻️ {{ user.total_plastic if user else 5.2 }}kg Saved</div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <nav class="bottom-nav">
+        <a href="/" class="nav-item">🏠 Home</a>
+        <a href="/journey" class="nav-item">🔄 Journey</a>
+        <a href="/store" class="nav-item">🛒 Store</a>
+        <a href="/transparency" class="nav-item">📽️ Hub</a>
+        <a href="/profile" class="nav-item">👤 Profile</a>
+    </nav>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

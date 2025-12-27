@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+    <h1>🏠 Welcome to Carbora</h1>
+    <p>Track Your Waste. See the Change.</p>
+</div>
+
+<div style="padding: 4rem 2rem 2rem; text-align: center; color: white;">
+    <h2>🎉 Your Impact</h2>
+    <div style="font-size: 1.5rem; margin: 2rem 0;">
+        <div>♻️ <span id="totalPlastic">{{ user.total_plastic if user else 5.2 }}</span>kg Saved from Landfills</div>
+        <div>💎 <span id="points">{{ user.points if user else 1247 }}</span> Points Earned</div>
+    </div>
+    
+    <button class="deposit-btn" id="depositBtn">🗑️ Deposit Plastic Now</button>
+    
+    <div style="margin-top: 3rem; opacity: 0.9;">
+        <p><strong>Recent Deposit:</strong> 1.2kg • Dec 27 • +120 points</p>
+        <a href="/journey" style="color: #FFF; text-decoration: none;">→ View My Journey</a>
+    </div>
+</div>
+
+<!-- Deposit Modal (Popup) -->
+<div id="depositModal" class="modal hidden">
+    <div class="modal-content">
+        <h3>🗑️ Deposit Plastic</h3>
+        <p>Scan QR code on bin and enter weight:</p>
+        
+        <div style="background: #F5F5F5; padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📱 KTR001</div>
+            <p style="color: #666; font-size: 0.9rem;">Thrissur Central • 500m away</p>
+        </div>
+        
+        <div class="input-group">
+            <label>Plastic Weight (kg):</label>
+            <input type="number" id="plasticWeight" step="0.1" min="0.1" max="50" placeholder="0.5" value="1.0">
+            <small>1 bottle ≈ 0.5kg</small>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button class="btn-primary" onclick="confirmDeposit()">✅ Deposit</button>
+            <button class="btn-secondary" onclick="closeModal()">❌ Cancel</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.modal.hidden { display: none; }
+
+.modal-content {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 25px;
+    max-width: 450px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+}
+
+.input-group {
+    margin: 1.5rem 0;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2E7D32;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.btn-secondary {
+    background: #757575;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    flex: 1;
+}
+
+.btn-secondary:hover {
+    background: #616161;
+}
+</style>
+{% endblock %}

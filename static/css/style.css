@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+    min-height: 100vh;
+    color: #212121;
+}
+
+.points-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.1rem;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.page-header {
+    text-align: center;
+    padding: 6rem 2rem 3rem;
+    color: white;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.deposit-card {
+    background: white;
+    margin: 2rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.deposit-card:hover {
+    transform: translateY(-5px);
+}
+
+.journey-timeline {
+    margin: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.timeline-step {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-left: 4px solid #E0E0E0;
+    position: relative;
+}
+
+.timeline-step.complete { border-left-color: #4CAF50; }
+.timeline-step.active { border-left-color: #FF9800; }
+
+.step-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+    min-width: 60px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    padding: 1rem 0;
+    box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
+}
+
+.nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 0.8rem;
+    text-decoration: none;
+    color: #666;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-item.active, .nav-item:hover {
+    color: #2E7D32;
+}
+
+.btn-primary, .redeem-btn, .deposit-btn {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem;
+}
+
+.btn-primary:hover, .redeem-btn:hover, .deposit-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+}
+
+.hidden { display: none !important; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.pulse { animation: pulse 2s infinite; }
+
+/* ✅ FIXED Video Thumbnails - Perfect Fit */
+.video-hero-thumbnail {
+    position: relative;
+    cursor: pointer;
+    height: 500px;
+    overflow: hidden; /* ✅ Prevents overflow */
+}
+
+.video-hero-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ Crops to fill perfectly */
+    object-position: center; /* ✅ Centers image */
+}
+
+.video-thumbnail {
+    position: relative;
+    height: 310px;
+    overflow: hidden; /* ✅ Prevents overflow */
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ Crops to fill perfectly */
+    object-position: center; /* ✅ Centers image */
+}
